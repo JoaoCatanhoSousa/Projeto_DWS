@@ -11,6 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
+    <link rel="stylesheet" href="Projeto_DWS/Public/Imagens/dashboard-3510327_640.jpg">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/abouts/about-2/assets/css/about-2.css">
 </head>
@@ -21,7 +22,7 @@
       <div class="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
         <div class="col-12 col-lg-6">
           <!--* We need to improve this image -->
-          <img class="img-fluid rounded" loading="lazy" src="/Images/dashboard-3510327_640.jpg" alt="About 2">
+          <img class="img-fluid rounded" loading="lazy" src="/Imagens/dashboard-3510327_640.jpg" alt="Hotel Image">
         </div>
         <div class="col-12 col-lg-6">
           <div class="row justify-content-xl-center">

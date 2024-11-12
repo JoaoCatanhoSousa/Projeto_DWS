@@ -8,8 +8,6 @@
 */
 
 ?>
-
-
  
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +26,7 @@
         <!-- Blog preview section-->
         <section class="py-5">
             <div class="container px-5">
-                <h2 class="fw-bolder fs-5 mb-4">Featured Stories</h2>
+                <h2 class="fw-bolder fs-5 mb-4">Welcome to Catanho's Hotel</h2>
                 <div class="row gx-5">
                     <div class="col-lg-4 mb-5">
                         <div class="card h-100 shadow border-0">
