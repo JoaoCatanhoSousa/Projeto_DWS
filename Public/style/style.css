@@ -1,0 +1,582 @@
+/*
+ *Importante information 
+ ! Deprecated method, do not use
+ TODO: refactor this code
+ ? should this method be used?
+*/
+
+/* *Importing Google Fonts - Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* *----------------------Header------------------------------ */
+.navbar {
+    background-color: #343a40; /* bg-dark */
+}
+
+.navbar-brand {
+    color: #fff;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.navbar-brand:hover {
+    color: #d4d4d4;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar-collapse {
+    justify-content: flex-end;
+}
+
+.nav-item {
+    margin-left: 1rem;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    color: #d4d4d4;
+}
+
+.nav-link.active {
+    color: #f8f9fa;
+    font-weight: bold;
+}
+
+/* Container */
+.container {
+    max-width: 1140px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* Utility classes */
+.px-5 {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem !important;
+}
+
+.mb-lg-0 {
+    margin-bottom: 0 !important;
+}
+
+.ms-auto {
+    margin-left: auto !important;
+}
+
+.custom-button1 {
+    display: flex; /* Usa flexbox para centralizar o conteúdo */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    background-color: #343a40; /* Define a cor de fundo */
+    border: none; /* Remove a borda do botão */
+    border-radius: 50%; /* Torna o botão redondo */
+    color: #e25959; /* Define a cor do texto como branco */
+    width: 50px; /* Define a largura do botão */
+    height: 50px; /* Define a altura do botão */
+    margin-left: 50px; /* Adiciona margem à direita */
+    transition: background-color 0.3s ease; /* Adiciona uma transição suave */
+}
+
+.custom-button1:hover {
+    background-color: #495057; /* Muda a cor de fundo ao passar o mouse */
+}
+
+.custom-button1 .material-symbols-outlined {
+    background-color: #3e4347; /* Fundo branco para o ícone */
+    border-radius: 50%; /* Torna o fundo do ícone circular */
+    padding: 5px; /* Adiciona padding ao ícone */
+    color: #ffffff; /* Define a cor do ícone como preto */
+}
+
+.material-symbols-outlined {
+    font-size: 2.5rem; /* Ajuste o tamanho conforme necessário */
+}
+
+/* *--------------------Footer--------------------------------- */
+/* @media (max-width: 992px) {
+    .navbar-toggler {
+        display: none;
+    }
+} */
+
+footer.bg-dark {
+    background-color: #343a40;
+    color: white;
+}
+
+footer.py-5 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+footer.py-4 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+footer.mt-auto {
+    margin-top: auto;
+}
+
+.container.px-4,
+.container.px-5 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.container.px-lg-5 {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.row.align-items-center {
+    align-items: center;
+}
+
+.row.justify-content-between {
+    justify-content: space-between;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-sm-row {
+    flex-direction: row;
+}
+
+.col-auto {
+    flex: 0 0 auto;
+}
+
+.small.m-0 {
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-white {
+    color: white;
+}
+
+.link-light {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+}
+
+.link-light:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.text-white.mx-1 {
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+}
+
+/* *---------------------- Login ---------------------*/
+/* Reset de margens e paddings, define box-sizing e fonte padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+#imagemaboutus {
+    background-image: url('/Imagens/dashboard-3510327_640.jpg');
+    display: flex; /* Adiciona Flexbox */
+    flex-direction: column; /* Alinha os itens verticalmente */
+    align-items: center; /* Alinha os itens horizontalmente no centro */
+    justify-content: center; /* Alinha os itens verticalmente no centro */
+    background-color: #838383; /* TODO: Tenho que modificar a cor. Define a cor de fundo */
+}
+
+/* Estilos para o elemento com ID root */
+#root {
+    width: 100%; /* Define a largura como 100% */
+    padding: 0 0.6rem; /* Adiciona padding horizontal */
+}
+
+/* Estilos para a classe loginclass */
+.loginclass {
+    border-radius: 0.5rem; /* Define bordas arredondadas */
+    padding: 2rem 1.5rem; /* Adiciona padding interno */
+    background: #fff; /* TODO: Tenho que modificar a cor. Define a cor de fundo como branco */
+    max-width: 410px; /* Define a largura máxima */
+    margin: 0 auto; /* Centraliza horizontalmente */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
+}
+
+/* Estilos para o separador dentro de loginclass */
+.loginclass .separator {
+    margin: 1.5rem 0; /* Adiciona margem vertical */
+    text-align: center; /* Centraliza o texto */
+    position: relative; /* Define posição relativa */
+}
+
+/* Estilos para o pseudo-elemento after do separador */
+.loginclass .separator::after {
+    position: absolute; /* Define posição absoluta */
+    content: ""; /* Define conteúdo vazio */
+    left: 0; /* Alinha à esquerda */
+    top: 50%; /* Alinha ao centro verticalmente */
+    width: 100%; /* Define a largura como 100% */
+    height: 1px; /* Define a altura */
+    background: #bfb3f2; /* TODO: Tenho que modificar a cor. Define a cor de fundo */
+}
+
+/* Estilos para o título do formulário */
+.loginclass .form-title {
+    text-align: center; /* Centraliza o texto */
+    font-size: 1.37rem; /* Define o tamanho da fonte */
+    font-weight: 600; /* Define a espessura da fonte */
+    margin-bottom: 1.87rem; /* Adiciona margem inferior */
+}
+
+/* Estilos para o wrapper dos inputs no formulário */
+.login-form .input-wrapper {
+    height: 50px; /* Define a altura */
+    width: 100%; /* Define a largura como 100% */
+    position: relative; /* Define posição relativa */
+    margin-bottom: 1.5rem; /* Adiciona margem inferior */
+}
+
+/* Estilos para os campos de input */
+.login-form .input-wrapper .input-field {
+    height: 100%; /* Define a altura como 100% */
+    width: 100%; /* Define a largura como 100% */
+    outline: none; /* Remove o contorno */
+    font-size: 1.06rem; /* Define o tamanho da fonte */
+    border-radius: 0.31rem; /* Define bordas arredondadas */
+    border: 1px solid #bfb3f2; /* TODO: Tenho que modificar a cor. Define a borda */
+    padding: 0 1.25rem 0 3.12rem; /* Adiciona padding interno */
+}
+
+/* Estilos para os campos de input quando focados */
+.login-form .input-wrapper .input-field:focus {
+    border-color: #9c8ce3; /* Muda a cor da borda ao focar */
+}
+
+/* Estilos para o placeholder dos campos de input */
+.login-form .input-wrapper .input-field::placeholder {
+    color: #bfb3f2; /* Define a cor do placeholder */
+}
+
+/* Estilos para os ícones dentro dos wrappers de input */
+.login-form .input-wrapper i {
+    color: #bfb3f2; /* TODO: Tenho que modificar a cor. Define a cor do ícone */
+    position: absolute; /* Define posição absoluta */
+    top: 50%; /* Alinha ao centro verticalmente */
+    left: 0.9rem; /* Define a posição à esquerda */
+    pointer-events: none; /* Desabilita eventos de ponteiro */
+    transform: translateY(-50%); /* Centraliza verticalmente */
+}
+
+/* Estilos para o link de esquecimento de senha */
+.login-form .forgot-pass-link {
+    display: block; /* Define como bloco */
+    width: fit-content; /* Define a largura como conteúdo ajustado */
+    margin-top: -0.46rem; /* Adiciona margem superior negativa */
+}
+
+/* Estilos para o botão de login */
+.login-form .login-button {
+    width: 100%; /* Define a largura como 100% */
+    height: 54px; /* Define a altura */
+    cursor: pointer; /* Define o cursor como ponteiro */
+    outline: none; /* Remove o contorno */
+    border: none; /* Remove a borda */
+    font-weight: 500; /* Define a espessura da fonte */
+    font-size: 1.125rem; /* Define o tamanho da fonte */
+    background: #b5a5fc; /* TODO: Tenho qu emodificar a cor. Define a cor de fundo */
+    margin-top: 2.19rem; /* Adiciona margem superior */
+    border-radius: 0.31rem; /* Define bordas arredondadas */
+    transition: 0.2s ease; /* Adiciona transição suave */
+}
+
+/* Estilos para o botão de login ao passar o mouse */
+.login-form .login-button:hover {
+    background: #9c8ce3; /* TODO: Tenho que modificar a cor. Muda a cor de fundo ao passar o mouse */
+}
+
+/* Estilos para o texto de inscrição */
+.loginclass .signup-text {
+    text-align: center; /* Centraliza o texto */
+    margin: 1.75rem 0 0.31rem; /* Adiciona margem */
+    font-weight: 500; /* Define a espessura da fonte */
+}
+
+/* Estilos para os links dentro de loginclass */
+.loginclass a {
+    text-decoration: none; /* Remove a decoração do texto */
+    color: #b5a5fc; /* TODO: Tenho que modificar a cor. Define a cor do texto */
+    font-weight: 500; /* Define a espessura da fonte */
+}
+
+/* Estilos para os links ao passar o mouse */
+.loginclass a:hover {
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+}
+
+/* *este é para a cor do botão do About us */
+#costum-btn {
+    border-color: #685ba4; /* Define a cor da borda */
+    color: #685ba4;
+}
+
+#costum-btn:hover {
+    background-color: #b4a9e3; /* Define a cor de fundo ao passar o mouse */
+    border-color: #b4a9e3; /* Define a cor da borda ao passar o mouse */
+}
+/* este é para a cor do botão do About us */
+
+#mb-3{
+    color: #000000;
+}
+
+/* *---------------------- Contact Us---------------------*/
+
+.custom-button {
+    background-color: #bfb3f2 !important; /* Cor de fundo do botão */
+    color: white !important; /* Cor do texto do botão */
+    border: none !important; /* Remover borda */
+}
+
+/* *---------------- Terms of Service ----------------------*/
+
+/* Estilos gerais */
+.body_service {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+.site-main {
+    padding: 20px;
+}
+
+.section {
+    padding: 20px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+
+.col-md-8 {
+    flex: 0 0 66.66667%;
+    max-width: 66.66667%;
+    padding: 0 15px;
+}
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilos específicos do conteúdo */
+.content-area {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.site-content {
+    text-align: left; /* Alinha o texto à esquerda por padrão */
+}
+
+.entry-header {
+    border-bottom: 1px solid #e9ecef;
+    margin-bottom: 20px;
+}
+
+.entry-title {
+    font-size: 2em;
+    margin: 0;
+    text-align: center; /* Alinha o título ao centro */
+}
+
+.entry-content {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #333333;
+}
+
+.entry-content p {
+    margin-bottom: 20px;
+}
+
+.entry-content ol {
+    margin: 20px 0;
+    padding-left: 20px;
+}
+
+.entry-content ol li {
+    margin-bottom: 10px;
+}
+
+.entry-content ol ol {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.entry-content ol ol li {
+    margin-bottom: 5px;
+}
+
+/* Estilos adicionais */
+@media (max-width: 768px) {
+    .col-md-8 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+/* *---------------------- Settings ---------------------*/
+
+.body{
+    background: #f5f5f5;
+   
+}
+
+.ui-w-80 {
+    width: 80px !important;
+    height: auto;
+}
+
+.btn-default {
+    border-color: rgba(24,28,33,0.1);
+    background: rgba(0,0,0,0);
+    color: #4E5155;
+}
+
+label.btn {
+    margin-bottom: 0;
+}
+
+.btn-outline-primary {
+    border-color: #26B4FF;
+    background: transparent;
+    color: #26B4FF;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.text-light {
+    color: #babbbc !important;
+}
+
+.btn-facebook {
+    border-color: rgba(0,0,0,0);
+    background: #3B5998;
+    color: #fff;
+}
+
+.btn-instagram {
+    border-color: rgba(0,0,0,0);
+    background: #000;
+    color: #fff;
+}
+
+.card {
+    background-clip: padding-box;
+    box-shadow: 0 1px 4px rgba(24,28,33,0.012);
+}
+
+.row-bordered {
+    overflow: hidden;
+}
+
+.account-settings-fileinput {
+    position: absolute;
+    visibility: hidden;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+.account-settings-links .list-group-item.active {
+    font-weight: bold !important;
+}
+html:not(.dark-style) .account-settings-links .list-group-item.active {
+    background: transparent !important;
+}
+.account-settings-multiselect ~ .select2-container {
+    width: 100% !important;
+}
+.light-style .account-settings-links .list-group-item {
+    padding: 0.85rem 1.5rem;
+    border-color: rgba(24, 28, 33, 0.03) !important;
+}
+.light-style .account-settings-links .list-group-item.active {
+    color: #4e5155 !important;
+}
+.material-style .account-settings-links .list-group-item {
+    padding: 0.85rem 1.5rem;
+    border-color: rgba(24, 28, 33, 0.03) !important;
+}
+.material-style .account-settings-links .list-group-item.active {
+    color: #4e5155 !important;
+}
+.dark-style .account-settings-links .list-group-item {
+    padding: 0.85rem 1.5rem;
+    border-color: rgba(255, 255, 255, 0.03) !important;
+}
+.dark-style .account-settings-links .list-group-item.active {
+    color: #fff !important;
+}
+.light-style .account-settings-links .list-group-item.active {
+    color: #4E5155 !important;
+}
+.light-style .account-settings-links .list-group-item {
+    padding: 0.85rem 1.5rem;
+    border-color: rgba(24,28,33,0.03) !important;
+}
+.custom-button-margin {
+    margin-bottom: 10px; /* Adiciona uma margem inferior de 10px */
+}
+
+#loginclass {/* !Ainda tenho que fazer alterações*/
+    border-radius: 0.5rem; /* Define bordas arredondadas */
+    background: #fff; /* TODO: Tenho que modificar a cor. Define a cor de fundo como branco */
+    max-width: 410px; /* Define a largura máxima */
+    max-height: 500px; /* Define a altura máxima */
+    margin: 0 auto; /* Centraliza horizontalmente */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
+    padding-bottom: 60px;
+    padding-top: 60px;
+}
