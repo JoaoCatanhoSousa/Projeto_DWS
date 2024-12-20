@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- *Link para o Arquivo CSS -->
-    <link rel="stylesheet" href="/Public/style.css"> 
+    <link rel="stylesheet" href="/Public/style/style.css"> 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"><!-- Bootstrap CSS. Link para a biblioteca do bootstrap -->
     <!-- *Goocle fonts link -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -41,8 +41,10 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-xl-7" id="imagemaboutus">
+                            <div class="col-xl-7" >
                                 <div class="loginclass">
+                                    <!-- Adicionando a imagem diretamente aqui -->
+                                    <img src="Public/Imagens/dashboard-3510327_640.jpg" alt="Imagem About Us";>
                                     <h1 class="form-title">Log in with</h1>
                                     <p class="separator"><span></span></p>
                                     <form action="#" class="login-form">

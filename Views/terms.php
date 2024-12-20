@@ -16,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service-Terms</title>
     <!-- *Link para o Arquivo CSS -->
-    <link rel="stylesheet" href="/Public/style.css"> 
+    <link rel="stylesheet" href="/Public/style/style.css"> 
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/contacts/contact-1/assets/css/contact-1.css">
 </head>
