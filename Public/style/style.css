@@ -311,7 +311,7 @@ footer.mt-auto {
     border: none; /* Remove a borda */
     font-weight: 500; /* Define a espessura da fonte */
     font-size: 1.125rem; /* Define o tamanho da fonte */
-    background: #b5a5fc; /* TODO: Tenho qu emodificar a cor. Define a cor de fundo */
+    background: #b5a5fc; /* TODO: Tenho que modificar a cor. Define a cor de fundo */
     margin-top: 2.19rem; /* Adiciona margem superior */
     border-radius: 0.31rem; /* Define bordas arredondadas */
     transition: 0.2s ease; /* Adiciona transição suave */
