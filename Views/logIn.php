@@ -1,7 +1,9 @@
 <?php
 include(__DIR__ . '/../BasedeDados.php');
-
 session_start();
+
+// Indicar que o usuário está na página de login
+$_SESSION['logging_in'] = true;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
@@ -23,7 +25,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $hashed_password)) {
             // Senha correta, iniciar sessão
             $_SESSION['id_Person'] = $id_Person;
-            header("Location: home.php"); // Redirecionar para a página do dashboard
+            $_SESSION['email_Person'] = $email;
+            $_SESSION['logged_in'] = true; // Definir a sessão logged_in
+
+            // Verificar se o usuário é um trabalhador
+            if (strpos($email, 'gmail.com.si') !== false) {
+                $_SESSION['is_worker'] = true;
+                header("Location: workerTemplate.php"); // Redirecionar para a página do trabalhador
+            } else {
+                $_SESSION['is_worker'] = false;
+                header("Location: home.php"); // Redirecionar para a página normal
+            }
+
+            // Remover a sessão logging_in após o login bem-sucedido
+            unset($_SESSION['logging_in']);
             exit();
         } else {
             $error = "Senha incorreta.";
@@ -50,6 +65,92 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Google fonts link -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
+<style>
+
+/* Estilos para a classe de login */
+.loginclass {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para o título do formulário */
+.loginclass .form-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Estilos para o separador */
+.loginclass .separator {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Estilos para os campos de entrada */
+.loginclass .input-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.loginclass .input-field {
+    width: 100%;
+    padding: 10px 40px 10px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.loginclass .material-symbols-outlined {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+}
+
+/* Estilos para o botão de login */
+.loginclass .login-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.loginclass .login-button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para o texto de inscrição */
+.loginclass .signup-text {
+    text-align: center;
+    margin: 1.75rem 0 0.31rem;
+    font-weight: 500;
+}
+
+/* Estilos para os links dentro de loginclass */
+.loginclass a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: 500;
+}
+
+.loginclass a:hover {
+    text-decoration: underline;
+}
+
+</style>
+
 <?php include(__DIR__ . '/Partials/header.php'); ?>
 <body class="d-flex flex-column">
     <main class="flex-shrink-0">
@@ -73,7 +174,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                             <div class="col-xl-7">
                                 <div class="loginclass">
-                                    <img src="Public/Imagens/dashboard-3510327_640.jpg" alt="Imagem About Us">
                                     <h1 class="form-title">Log in with</h1>
                                     <p class="separator"><span></span></p>
                                     <?php if (isset($error)): ?>
@@ -88,7 +188,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <input type="password" name="password" placeholder="Password" class="input-field" required>
                                             <i class="material-symbols-outlined">lock</i>
                                         </div>
-                                        <a href="#" class="forgot-pass-link">Forgot Password?</a>
                                         <button type="submit" class="login-button">Log in</button>
                                     </form>
                                     <p class="signup-text">Don't have an account? <a href="signUp.php">SignUp</a></p>
