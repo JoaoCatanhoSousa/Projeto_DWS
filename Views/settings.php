@@ -1,12 +1,22 @@
 <?php
+include(__DIR__ . '/../BasedeDados.php');
+session_start();
 
-/*
- *Importante information 
- !Deprecated method, do not use
- TODO: refactor this code
- ?should this method be used?
-*/
+// Verificar se o usuário está logado
+if (!isset($_SESSION['id_Person'])) {
+    header("Location: logIn.php");
+    exit();
+}
 
+$userId = $_SESSION['id_Person'];
+
+// Recuperar os dados do usuário logado
+$stmt = $conn->prepare("SELECT p.name_Person, p.email_Person, p.age_Person, p.num_Person FROM Person p JOIN Client c ON p.id_Person = c.Person_id_Person WHERE p.id_Person = ?");
+$stmt->bind_param("i", $userId);
+$stmt->execute();
+$stmt->bind_result($name, $email, $age, $contact);
+$stmt->fetch();
+$stmt->close();
 ?>
 
 <!DOCTYPE html>
@@ -19,118 +29,41 @@
 <?php include(__DIR__ . '/Partials/header.php'); ?>
 <body class="body">
     <div class="container light-style flex-grow-1 container-p-y">
-
         <h4 class="font-weight-bold py-3 mb-4">Settings</h4>
-    
         <div class="card overflow-hidden">
           <div class="row no-gutters row-bordered row-border-light">
             <div class="col-md-3 pt-0">
               <div class="list-group list-group-flush account-settings-links">
                 <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-general">General</a>
-                <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password">Change password</a>
-                <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-info">Info</a>
-                <a class="list-group-item list-group-item-action" data-toggle="list" href="signUp.php">SignUp</a>
+                <a class="list-group-item list-group-item-action" data-toggle="list" href="logIn.php">Log Out</a>
               </div>
             </div>
             <div class="col-md-9">
               <div class="tab-content">
                 <div class="tab-pane fade active show" id="account-general">
-    
-                  <div class="card-body media align-items-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="d-block ui-w-80">
-                    <div class="media-body ml-4">
-                      <label class="btn btn-outline-primary">
-                        Upload new photo
-                        <input type="file" class="account-settings-fileinput">
-                      </label> &nbsp;
-                      <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
-                    </div>
-                  </div>
                   <hr class="border-light m-0">
-    
                   <div class="card-body">
                     <div class="form-group">
                       <label class="form-label">Name</label>
-                      <input type="text" class="form-control" value=""><!--?sera para meter os dados do utilizador-->
+                      <input type="text" class="form-control" value="<?php echo htmlspecialchars($name); ?>" readonly>
                     </div>
                     <div class="form-group">
                       <label class="form-label">E-mail</label>
-                      <input type="text" class="form-control mb-1" value=""><!--?sera para meter os dados do utilizador-->
+                      <input type="email" class="form-control mb-1" value="<?php echo htmlspecialchars($email); ?>" readonly>
                     </div>
                     <div class="form-group">
-                      <label class="form-label">Company</label>
-                      <input type="text" class="form-control" value=""><!--?sera para meter os dados do utilizador-->
+                      <label class="form-label">Age</label>
+                      <input type="number" class="form-control" value="<?php echo htmlspecialchars($age); ?>" readonly>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Contacts</label>
+                      <input type="text" class="form-control" value="<?php echo htmlspecialchars($contact); ?>" readonly>
                     </div>
                   </div>
-    
-                </div>
-                <div class="tab-pane fade active show" id="account-change-password"><!--!Aqui será a mudança de password-->
-                  <div class="card-body pb-2">
-    
-                    <div class="form-group">
-                      <label class="form-label">Current password</label>
-                      <input type="password" class="form-control">
-                    </div>
-    
-                    <div class="form-group">
-                      <label class="form-label">New password</label>
-                      <input type="password" class="form-control">
-                    </div>
-    
-                    <div class="form-group">
-                      <label class="form-label">Repeat new password</label>
-                      <input type="password" class="form-control">
-                    </div>
-    
-                  </div>
-                </div>
-                <div class="tab-pane fade active show" id="account-info"><!--!Aqui vai ser o meu grafico-->
-                  <div class="card-body pb-2">
-    
-                    <div class="form-group">
-                      <label class="form-label">Bio</label>
-                      <textarea class="form-control" rows="5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nunc arcu, dignissim sit amet sollicitudin iaculis, vehicula id urna. Sed luctus urna nunc. Donec fermentum, magna sit amet rutrum pretium, turpis dolor molestie diam, ut lacinia diam risus eleifend sapien. Curabitur ac nibh nulla. Maecenas nec augue placerat, viverra tellus non, pulvinar risus.</textarea>
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">Birthday</label>
-                      <input type="text" class="form-control" value="May 3, 1995">
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">Country</label>
-                      <select class="custom-select">
-                        <option>USA</option>
-                        <option selected="">Canada</option>
-                        <option>UK</option>
-                        <option>Germany</option>
-                        <option>France</option>
-                      </select>
-                    </div>
-    
-    
-                  </div>
-                  <hr class="border-light m-0">
-                  <div class="card-body pb-2">
-    
-                    <h6 class="mb-4">Contacts</h6>
-                    <div class="form-group">
-                      <label class="form-label">Phone</label>
-                      <input type="text" class="form-control" value="+0 (123) 456 7891">
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">Website</label>
-                      <input type="text" class="form-control" value="">
-                    </div>
-    
-                  </div>
-          
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="text-right mt-3">
-          <button type="button" class="btn btn-primary custom-button-margin">Save changes</button>&nbsp;
-          <button type="button" class="btn btn-default custom-button-margin">Cancel</button>
         </div>
     </div>
 </body>
