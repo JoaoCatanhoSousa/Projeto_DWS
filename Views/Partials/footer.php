@@ -25,14 +25,14 @@
         <div class="container px-5">
             <div class="row align-items-center justify-content-between flex-column flex-sm-row">
                 <div class="col-auto">
-                    <small class="m-0 text-white">Copyright &copy; Your Website 2024</small>
+                    <small class="m-0 text-white">Copyright &copy; Your Website 2025</small>
                 </div>
                 <div class="col-auto">
-                    <a class="link-light small" href="#!">Contact Us</a>
+                    <a class="link-light small" href="contactUs.php">Contact Us</a>
                     <span class="text-white mx-1">&middot;</span>
-                    <a class="link-light small" href="#!">About Us</a>
+                    <a class="link-light small" href="aboutUs.php">About Us</a>
                     <span class="text-white mx-1">&middot;</span>
-                    <a class="link-light small" href="#!">Terms</a>
+                    <a class="link-light small" href="terms.php">Terms</a>
                 </div>
             </div>
         </div>

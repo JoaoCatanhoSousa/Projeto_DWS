@@ -60,7 +60,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reservas do Quarto</title>
+    <title>Reservation of the Room</title>
     <!-- Link para o Arquivo CSS -->
     <link rel="stylesheet" href="/Projeto_DWS/Public/style/style.css"> 
     <!-- Google fonts link -->
@@ -72,7 +72,7 @@ $conn->close();
         <!-- Blog preview section-->
         <section class="py-5">
             <div class="container px-5">
-                <h2 class="fw-bolder fs-5 mb-4">Reservas do Quarto</h2>
+                <h2 class="fw-bolder fs-5 mb-4">Reservations of the Room</h2>
                 <?php
                 if (isset($_SESSION['message'])) {
                     echo "<p>" . $_SESSION['message'] . "</p>";
@@ -86,17 +86,17 @@ $conn->close();
                                 <img class="card-img-top" src="<?php echo htmlspecialchars($reservation['room_image']); ?>" alt="Room Image" />
                                 <div class="card-body p-4">
                                     <div class="badge bg-primary bg-gradient rounded-pill mb-2"><?php echo htmlspecialchars($reservation['room_type']); ?></div>
-                                    <h5 class="card-title mb-3">Cliente: <?php echo htmlspecialchars($reservation['client_name']); ?></h5>
-                                    <p class="card-text mb-0">Data de Entrada: <?php echo htmlspecialchars($reservation['date_Entrance']); ?></p>
-                                    <p class="card-text mb-0">Data de Saída: <?php echo htmlspecialchars($reservation['date_Out']); ?></p>
-                                    <p class="card-text mb-0">Custo Total: $<?php echo htmlspecialchars($reservation['final_Cost']); ?></p>
+                                    <h5 class="card-title mb-3">Client: <?php echo htmlspecialchars($reservation['client_name']); ?></h5>
+                                    <p class="card-text mb-0">Date of Entrance: <?php echo htmlspecialchars($reservation['date_Entrance']); ?></p>
+                                    <p class="card-text mb-0">Release date : <?php echo htmlspecialchars($reservation['date_Out']); ?></p>
+                                    <p class="card-text mb-0">Total Cost: $<?php echo htmlspecialchars($reservation['final_Cost']); ?></p>
                                 </div>
                                 <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
                                     <div class="d-flex align-items-end justify-content-between">
-                                        <a href="pre_hotelReservation.php?reservation_id=<?php echo $reservation['id']; ?>" class="btn btn-primary">Ver Detalhes</a>
-                                        <form action="hotelReservation.php" method="POST" onsubmit="return confirm('Tem certeza que deseja eliminar esta reserva?');">
+                                        <a href="pre_hotelReservation.php?reservation_id=<?php echo $reservation['id']; ?>" class="btn btn-primary">Show Details</a>
+                                        <form action="hotelReservation.php" method="POST" onsubmit="return confirm('Are you sure you want to delete this reservation?');">
                                             <input type="hidden" name="delete_reservation_id" value="<?php echo $reservation['id']; ?>">
-                                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                                            <button type="submit" class="btn btn-danger">Delete</button>
                                         </form>
                                     </div>
                                 </div>

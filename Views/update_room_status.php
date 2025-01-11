@@ -7,9 +7,9 @@ function updateReservationDates($conn, $reservationId, $newCheckin, $newCheckout
     $stmt->bind_param("ssi", $newCheckin, $newCheckout, $reservationId);
 
     if ($stmt->execute()) {
-        echo "Datas da reserva atualizadas com sucesso!";
+        echo "Reservation dates successfully updated!";
     } else {
-        echo "Erro ao atualizar as datas da reserva: " . $stmt->error;
+        echo "Error updating reservation dates: " . $stmt->error;
     }
 
     $stmt->close();

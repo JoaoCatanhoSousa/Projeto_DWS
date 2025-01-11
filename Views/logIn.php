@@ -41,10 +41,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             unset($_SESSION['logging_in']);
             exit();
         } else {
-            $error = "Senha incorreta.";
+            $error = "Incorrect Password.";
         }
     } else {
-        $error = "Email não encontrado.";
+        $error = "Email not found.";
     }
 
     // Close the statement and connection
@@ -166,10 +166,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <div class="badge bg-primary bg-gradient rounded-pill mb-2">Warning</div>
                                     <div class="h2 fw-bolder">LogIn to participate in the Site</div>
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique delectus ab doloremque, qui doloribus ea officiis...</p>
-                                    <a class="stretched-link text-decoration-none" href="#!">
-                                        Read more
-                                        <i class="bi bi-arrow-right"></i>
-                                    </a>
+                                    
                                 </div>
                             </div>
                             <div class="col-xl-7">

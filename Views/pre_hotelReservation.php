@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
 
     if ($reservationCount > 0) {
-        echo "Erro: O quarto não está disponível nas datas selecionadas.";
+        echo "Error: The room is not available for the selected dates.";
     } else {
         // Inserir a reserva no banco de dados
         $stmt = $conn->prepare("INSERT INTO Reservation (date_Entrance, date_Out, final_Cost, status, Cient_Person_id_Person) VALUES (?, ?, ?, ?, ?)");
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt2->execute();
             $stmt2->close();
 
-            echo "Reserva salva com sucesso!";
+            echo "Reservation saved successfully!";
         } else {
             echo "Erro: " . $stmt->error;
         }
@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reserva de Hotel</title>
+    <title>Hotel's Reservation</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -125,26 +125,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <h1>Reserva de Hotel</h1>
         <form action="pre_hotelReservation.php?room_id=<?php echo $roomId; ?>" method="post">
-            <label for="checkin">Data de Entrada:</label>
+            <label for="checkin">Date of Entrance:</label>
             <input type="date" id="checkin" name="checkin" required onchange="calculatePrice()">
 
-            <label for="checkout">Data de Saída:</label>
+            <label for="checkout">Release Date:</label>
             <input type="date" id="checkout" name="checkout" required onchange="calculatePrice()">
 
-            <label for="price_per_night">Preço por Noite (R$):</label>
+            <label for="price_per_night">Price per Nigth(E€):</label>
             <input type="number" id="price_per_night" name="price_per_night" step="0.01" value="<?php echo $roomPricePerNight; ?>" readonly required>
 
-            <label for="price">Preço Total (R$):</label>
+            <label for="price">Total Price (E€):</label>
             <input type="number" id="price" name="price" step="0.01" readonly required>
 
             <label for="status">Status:</label>
             <select id="status" name="status" required>
-                <option value="confirmada">Confirmada</option>
-                <option value="pendente">Pendente</option>
-                <option value="cancelada">Cancelada</option>
+                <option value="confirmada">Confirm</option>
             </select>
 
-            <button type="submit">Salvar Reserva</button>
+            <button type="submit">Save Reservation</button>
         </form>
     </div>
 </body>

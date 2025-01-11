@@ -73,19 +73,19 @@ $conn->close();
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="detailsModalLabel">Detalhes do Quarto</h5>
+                    <h5 class="modal-title" id="detailsModalLabel">Details of the Room</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p><strong>Descrição:</strong> <span id="roomDescription"></span></p>
-                    <p><strong>Capacidade:</strong> <span id="roomCapacity"></span></p>
-                    <p><strong>Preço:</strong> <span id="roomPrice"></span></p>
-                    <p><strong>Piso:</strong> <span id="roomFloor"></span></p>
+                    <p><strong>Description:</strong> <span id="roomDescription"></span></p>
+                    <p><strong>Capacity:</strong> <span id="roomCapacity"></span></p>
+                    <p><strong>Price:</strong> <span id="roomPrice"></span></p>
+                    <p><strong>Floor:</strong> <span id="roomFloor"></span></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

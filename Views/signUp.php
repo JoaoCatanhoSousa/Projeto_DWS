@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
         $stmt->store_result();
         if ($stmt->num_rows > 0) {
-            $error = "O email já está em uso.";
+            $error = "The email is already in use.";
         }
         $stmt->close();
 
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
         $stmt->store_result();
         if ($stmt->num_rows > 0) {
-            $error = "O número de telefone já está em uso.";
+            $error = "The phone number is already in use.";
         }
         $stmt->close();
 
@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 // Commit da transação
                 $conn->commit();
-                echo "Registro bem-sucedido!";
+                echo "Registration successful!";
 
                 // Definir a sessão para indicar que o usuário está registrado
                 $_SESSION['registered'] = true;
@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } catch (Exception $e) {
                 // Rollback da transação em caso de erro
                 $conn->rollback();
-                echo "Erro: " . $e->getMessage();
+                echo "Error: " . $e->getMessage();
             }
 
             // Close the statements and connection

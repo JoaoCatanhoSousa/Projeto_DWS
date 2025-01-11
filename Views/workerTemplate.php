@@ -45,15 +45,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Verificar se o número atual de quartos excede o limite
         if ($currentRoomCount >= $maxRooms) {
-            $_SESSION['message'] = "Erro: O número máximo de quartos para este piso foi atingido.";
+            $_SESSION['message'] = "Error: The maximum number of rooms for this floor has been reached.";
         } else {
             $stmt = $conn->prepare("INSERT INTO Room (type_Room, capacity_Room, price_Room, description_Room, Floor_id_Floor, status_Room, imgURL) VALUES (?, ?, ?, ?, ?, ?, ?)");
             $stmt->bind_param("sidsiss", $roomType, $roomCapacity, $roomPrice, $roomDescription, $floorId, $statusRoom, $roomImage);
 
             if ($stmt->execute()) {
-                $_SESSION['message'] = "Quarto adicionado com sucesso!";
+                $_SESSION['message'] = "Room added successfully!";
             } else {
-                $_SESSION['message'] = "Erro: " . $stmt->error;
+                $_SESSION['message'] = "Error: " . $stmt->error;
             }
 
             $stmt->close();
@@ -66,9 +66,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("ii", $floorNumber, $numRooms);
 
         if ($stmt->execute()) {
-            $_SESSION['message'] = "Piso adicionado com sucesso!";
+            $_SESSION['message'] = "Floor added successfully!";
         } else {
-            $_SESSION['message'] = "Erro: " . $stmt->error;
+            $_SESSION['message'] = "Error: " . $stmt->error;
         }
 
         $stmt->close();
@@ -82,13 +82,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Verificar se o nome do trabalhador é válido
         if (!preg_match("/^[\p{Lu}][\p{L} ]+$/u", $workerName)) {
-            $error = "Erro: O nome deve começar com uma letra maiúscula e conter apenas letras e acentos.";
+            $error = "Error: The name must start with an uppercase letter and contain only letters and accents.";
         } elseif (!preg_match("/^[a-zA-Z0-9._%+-]+@gmail\.com\.si$/", $workerEmail)) {
             // Verificar se o email termina com '@gmail.com.si' usando regex
-            $error = "Erro: O email deve terminar com '@gmail.com.si' para ser um trabalhador.";
+            $error = "Error: The email must end with '@gmail.com.si' to be a worker.";
         } elseif (!preg_match("/^\d{9}$/", $workerPhone)) {
             // Verificar se o número de telefone tem exatamente 9 dígitos
-            $error = "Erro: O número de telefone deve ter exatamente 9 dígitos.";
+            $error = "Error: The phone number must have exactly 9 digits.";
         } else {
             // Primeiro, insira o trabalhador na tabela Person
             $stmt = $conn->prepare("INSERT INTO Person (name_Person, email_Person, num_Person, age_Person) VALUES (?, ?, ?, ?)");
@@ -102,12 +102,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->bind_param("iis", $personId, $floorId, $startDate);
 
                 if ($stmt->execute()) {
-                    $_SESSION['message'] = "Trabalhador adicionado com sucesso!";
+                    $_SESSION['message'] = "Worker added successfully!";
                 } else {
-                    $_SESSION['message'] = "Erro: " . $stmt->error;
+                    $_SESSION['message'] = "Error: " . $stmt->error;
                 }
             } else {
-                $_SESSION['message'] = "Erro: " . $stmt->error;
+                $_SESSION['message'] = "Error: " . $stmt->error;
             }
 
             $stmt->close();
@@ -129,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciar Hotel</title>
+    <title>Manage Hotel</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -170,7 +170,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             const emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com\.si$/;
 
             if (!emailPattern.test(email)) {
-                errorDiv.textContent = "Erro: O email deve terminar com '@gmail.com.si' para ser um trabalhador.";
+                errorDiv.textContent = "Error: The email must end with '@gmail.com.si' to be a worker.";
                 return false;
             } else {
                 errorDiv.textContent = "";
@@ -184,7 +184,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
 </head>
 <body>
-    <h1>Gerenciar Hotel</h1>
+    <h1>Manage Hotel</h1>
 
     <?php
     if (isset($_SESSION['message'])) {
@@ -194,81 +194,81 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ?>
 
     <!-- Formulário para adicionar quartos -->
-    <h2>Adicionar Quarto</h2>
+    <h2>Add Room</h2>
     <form action="workerTemplate.php" method="POST">
         <input type="hidden" name="action" value="add_room">
-        <label for="room_type">Tipo de Quarto:</label>
+        <label for="room_type">Room Type:</label>
         <select name="room_type" required>
             <option value="Suite">Suite</option>
             <option value="T3">T3</option>
             <option value="T2">T2</option>
         </select>
-        <label for="room_capacity">Capacidade:</label>
+        <label for="room_capacity">Capacity:</label>
         <input type="number" name="room_capacity" required min="1">
-        <label for="room_price">Preço:</label>
+        <label for="room_price">Price:</label>
         <input type="number" name="room_price" required step="0.01">
-        <label for="room_description">Descrição:</label>
-        <textarea name="room_description" rows="3" placeholder="Ex: Vista para o mar, sem varanda"></textarea>
-        <label for="floor_id">ID do Piso:</label>
+        <label for="room_description">Description:</label>
+        <textarea name="room_description" rows="3" placeholder="Ex: Sea view, no balcony"></textarea>
+        <label for="floor_id">Floor ID:</label>
         <select name="floor_id" required>
             <?php foreach ($floors as $floor): ?>
                 <option value="<?php echo htmlspecialchars($floor['id']); ?>"><?php echo htmlspecialchars($floor['id']); ?></option>
             <?php endforeach; ?>
         </select>
-        <label for="status_Room">Status do Quarto:</label>
+        <label for="status_Room">Room Status:</label>
         <select name="status_Room" required>
-            <option value="Disponivel">Disponível</option>
-            <option value="Não Disponivel">Não Disponível</option>
+            <option value="Disponivel">Available</option>
+            <option value="Não Disponivel">Not Available</option>
         </select>
-        <label for="room_image">Imagem do Quarto:</label>
+        <label for="room_image">Room Image:</label>
         <select name="room_image" required>
             <option value="/Projeto_DWS/Public/Imagens/transferir (1).jpg">Suite</option>
             <option value="/Projeto_DWS/Public/Imagens/pasted image 0.png">T3</option>
             <option value="/Projeto_DWS/Public/Imagens/quartos-de-hotel-feitos-com-moveis-planejados.png">T2</option>
         </select>
-        <button type="submit">Adicionar Quarto</button>
+        <button type="submit">Add Room</button>
     </form>
 
     <!-- Formulário para adicionar pisos -->
-    <h2>Adicionar Piso</h2>
+    <h2>Add Floor</h2>
     <form action="workerTemplate.php" method="POST">
         <input type="hidden" name="action" value="add_floor">
-        <label for="num_floor">Número do Piso:</label>
+        <label for="num_floor">Floor Number:</label>
         <input type="number" name="num_floor" required>
-        <label for="num_rooms">Número de Quartos:</label>
+        <label for="num_rooms">Number of Rooms:</label>
         <input type="number" name="num_rooms" required min="1">
-        <button type="submit">Adicionar Piso</button>
+        <button type="submit">Add Floor</button>
     </form>
 
     <!-- Formulário para adicionar trabalhadores -->
-    <h2>Adicionar Trabalhador</h2>
+    <h2>Add Worker</h2>
     <form action="workerTemplate.php" method="POST" onsubmit="return validateForm()">
         <input type="hidden" name="action" value="add_worker">
         <?php if (!empty($error)): ?>
             <div class="alert"><?php echo $error; ?></div>
         <?php endif; ?>
-        <label for="worker_name">Nome do Trabalhador:</label>
-        <input type="text" name="worker_name" required placeholder="Ex: João Silva" pattern="^[\p{Lu}][\p{L} ]+$" title="O nome deve começar com uma letra maiúscula e conter apenas letras e acentos.">
+        <label for="worker_name">Worker Name:</label>
+        <input type="text" name="worker_name" required placeholder="Ex: João Silva" pattern="^[\p{Lu}][\p{L} ]+$" title="The name must start with an uppercase letter and contain only letters and accents.">
         <label for="worker_email">Email:</label>
         <input type="email" name="worker_email" required oninput="validateEmail()">
         <div id="emailError" class="alert"></div>
-        <label for="worker_phone">Telefone:</label>
-        <input type="text" name="worker_phone" required placeholder="Ex: 912345678" pattern="\d{9}" title="O número de telefone deve ter exatamente 9 dígitos.">
-        <label for="worker_age">Idade:</label>
+        <label for="worker_phone">Phone:</label>
+        <input type="text" name="worker_phone" required placeholder="Ex: 912345678" pattern="\d{9}" title="The phone number must have exactly 9 digits.">
+        <label for="worker_age">Age:</label>
         <input type="number" name="worker_age" required min="18" max="65" placeholder="Ex: 30">
-        <label for="floor_id">ID do Piso:</label>
+        <label for="floor_id">Floor ID:</label>
         <select name="floor_id" required>
             <?php foreach ($floors as $floor): ?>
                 <option value="<?php echo htmlspecialchars($floor['id']); ?>"><?php echo htmlspecialchars($floor['id']); ?></option>
             <?php endforeach; ?>
         </select>
-        <label for="start_date">Data de Entrada:</label>
+        <label for="start_date">Start Date:</label>
         <input type="date" name="start_date" required>
-        <button type="submit">Adicionar Trabalhador</button>
+        <button type="submit">Add Worker</button>
     </form>
     <!-- Botão para voltar ao Login -->
     <div class="center">
-        <a href="logout.php" class="btn btn-primary">Voltar ao Login</a>
+        <a href="logout.php" class="btn btn-primary">Back to Login</a>
     </div>
 
     
