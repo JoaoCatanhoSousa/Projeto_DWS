@@ -93,7 +93,6 @@ $conn->close();
                                 </div>
                                 <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
                                     <div class="d-flex align-items-end justify-content-between">
-                                        <a href="pre_hotelReservation.php?reservation_id=<?php echo $reservation['id']; ?>" class="btn btn-primary">Show Details</a>
                                         <form action="hotelReservation.php" method="POST" onsubmit="return confirm('Are you sure you want to delete this reservation?');">
                                             <input type="hidden" name="delete_reservation_id" value="<?php echo $reservation['id']; ?>">
                                             <button type="submit" class="btn btn-danger">Delete</button>
