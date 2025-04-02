@@ -1,13 +1,17 @@
 <?php
+// Inclui o arquivo de conexão com a base de dados
 include(__DIR__ . '/../BasedeDados.php');
+// Inicia a sessão
 session_start();
 
 // Verificar se o usuário está logado
 if (!isset($_SESSION['id_Person'])) {
+    // Redireciona para a página de login se o usuário não estiver logado
     header("Location: logIn.php");
     exit();
 }
 
+// Obtém o ID do usuário da sessão
 $userId = $_SESSION['id_Person'];
 
 // Recuperar os dados do usuário logado
@@ -26,6 +30,7 @@ $stmt->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
 </head>
+<!-- Inclui o cabeçalho -->
 <?php include(__DIR__ . '/Partials/header.php'); ?>
 <body class="body">
     <div class="container light-style flex-grow-1 container-p-y">
@@ -67,5 +72,6 @@ $stmt->close();
         </div>
     </div>
 </body>
+<!-- Inclui o rodapé -->
 <?php include(__DIR__ . '/Partials/footer.php'); ?>
 </html>

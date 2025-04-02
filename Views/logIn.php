@@ -1,34 +1,39 @@
 <?php
+// Inclui o arquivo de conexão com a base de dados
 include(__DIR__ . '/../BasedeDados.php');
+// Inicia a sessão
 session_start();
 
 // Indicar que o usuário está na página de login
 $_SESSION['logging_in'] = true;
 
+// Verifica se o formulário foi enviado via POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obtém o email e a senha do formulário
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Prepare a SQL statement
+    // Prepara a consulta SQL
     $stmt = $conn->prepare("SELECT p.id_Person, c.password_client FROM Person p JOIN Client c ON p.id_Person = c.Person_id_Person WHERE p.email_Person = ?");
     $stmt->bind_param("s", $email);
 
-    // Execute the statement
+    // Executa a consulta
     $stmt->execute();
     $stmt->store_result();
 
+    // Verifica se o email existe na base de dados
     if ($stmt->num_rows > 0) {
         $stmt->bind_result($id_Person, $hashed_password);
         $stmt->fetch();
 
-        // Verificar a senha
+        // Verifica a senha
         if (password_verify($password, $hashed_password)) {
             // Senha correta, iniciar sessão
             $_SESSION['id_Person'] = $id_Person;
             $_SESSION['email_Person'] = $email;
             $_SESSION['logged_in'] = true; // Definir a sessão logged_in
 
-            // Verificar se o usuário é um trabalhador
+            // Verifica se o usuário é um trabalhador
             if (strpos($email, 'gmail.com.si') !== false) {
                 $_SESSION['is_worker'] = true;
                 header("Location: workerTemplate.php"); // Redirecionar para a página do trabalhador
@@ -41,13 +46,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             unset($_SESSION['logging_in']);
             exit();
         } else {
+            // Senha incorreta
             $error = "Incorrect Password.";
         }
     } else {
+        // Email não encontrado
         $error = "Email not found.";
     }
 
-    // Close the statement and connection
+    // Fecha a declaração e a conexão
     $stmt->close();
     $conn->close();
 }
@@ -61,6 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Login</title>
     <!-- Link para o Arquivo CSS -->
     <link rel="stylesheet" href="/Public/style/style.css"> 
+    <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google fonts link -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -151,10 +159,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </style>
 
+<!-- Inclui o cabeçalho -->
 <?php include(__DIR__ . '/Partials/header.php'); ?>
 <body class="d-flex flex-column">
     <main class="flex-shrink-0">
-        <!-- Page Content-->
+        <!-- Conteúdo da página -->
         <section class="py-5">
             <div class="container px-5">
                 <h1 class="fw-bolder fs-5 mb-4">Welcome, to the <strong>Login Page</strong></h1>
@@ -166,16 +175,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <div class="badge bg-primary bg-gradient rounded-pill mb-2">Warning</div>
                                     <div class="h2 fw-bolder">LogIn to participate in the Site</div>
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique delectus ab doloremque, qui doloribus ea officiis...</p>
-                                    
                                 </div>
                             </div>
                             <div class="col-xl-7">
                                 <div class="loginclass">
                                     <h1 class="form-title">Log in with</h1>
                                     <p class="separator"><span></span></p>
+                                    <!-- Exibe mensagem de erro, se houver -->
                                     <?php if (isset($error)): ?>
                                         <div class="alert alert-danger"><?php echo $error; ?></div>
                                     <?php endif; ?>
+                                    <!-- Formulário de login -->
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="login-form">
                                         <div class="input-wrapper">
                                             <input type="email" name="email" placeholder="Email Address" class="input-field" required>
@@ -197,5 +207,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </section>
     </main>
 </body>
+<!-- Inclui o rodapé -->
 <?php include(__DIR__ . '/Partials/footer.php'); ?>
 </html>

@@ -12,21 +12,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Define a codificação de caracteres -->
     <meta charset="UTF-8">
+    <!-- Define a viewport para responsividade -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Define o título da página -->
     <title>Contact Us</title>
     <!-- *Link para o Arquivo CSS -->
     <link rel="stylesheet" href="/Public/style.css"> 
+    <!-- Link para o Bootstrap CSS -->
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- Link para o CSS personalizado -->
     <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/contacts/contact-1/assets/css/contact-1.css">
 </head>
+<!-- Inclui o cabeçalho -->
 <?php include(__DIR__ . '/Partials/header.php'); ?>
 <body>
     <section class="bg-light py-3 py-md-5">
         <div class="container">
             <div class="row justify-content-md-center">
                 <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+                    <!-- Título da seção -->
                     <h2 class="mb-4 display-5 text-center">Contact Us</h2>
+                    <!-- Descrição da seção -->
                     <p class="text-secondary mb-5 text-center">The best way to contact us is to use our contact form below. Please fill out all of the required fields and we will get back to you as soon as possible.</p>
                 </div>
             </div>
@@ -35,9 +43,11 @@
             <div class="row justify-content-lg-center">
                 <div class="col-12 col-lg-9">
                     <div class="bg-white border rounded shadow-sm overflow-hidden">
+                        <!-- Formulário de contato -->
                         <form action="#!"><!-- ?Tem que enviar para o email, para depois reenviar uma resposta -->
                             <div class="row gy-4 gy-xl-5 p-4 p-xl-5">                               
                                 <div class="col-12 col-md-6">
+                                    <!-- Campo de email -->
                                     <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
                                     <div class="input-group">
                                         <span class="input-group-text custom-button">
@@ -49,6 +59,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
+                                    <!-- Campo de telefone -->
                                     <label for="phone" class="form-label">Phone Number</label>
                                     <div class="input-group">
                                         <span class="input-group-text custom-button">
@@ -60,11 +71,13 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
+                                    <!-- Campo de mensagem -->
                                     <label for="message" class="form-label">Message <span class="text-danger">*</span></label>
                                     <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
                                   </div>
                                 <div class="col-12">
                                     <div class="d-grid">
+                                        <!-- Botão de envio -->
                                         <button class="btn btn-primary btn-lg custom-button" type="submit">Send</button>
                                     </div>
                                 </div>
@@ -76,5 +89,6 @@
         </div>
     </section>
 </body>
+<!-- Inclui o rodapé -->
 <?php include(__DIR__ . '/Partials/footer.php'); ?>
 </html>

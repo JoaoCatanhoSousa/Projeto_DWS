@@ -1,5 +1,7 @@
 <?php
+// Inclui o arquivo de conexão com a base de dados
 include(__DIR__ . '/../BasedeDados.php');
+// Inicia a sessão
 session_start();
 
 // Recuperar os IDs dos pisos da base de dados
@@ -8,6 +10,7 @@ $stmt->execute();
 $stmt->bind_result($floorId, $numRooms);
 $floors = [];
 while ($stmt->fetch()) {
+    // Adiciona cada piso ao array de pisos
     $floors[] = ['id' => $floorId, 'num_rooms' => $numRooms];
 }
 $stmt->close();
@@ -47,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($currentRoomCount >= $maxRooms) {
             $_SESSION['message'] = "Error: The maximum number of rooms for this floor has been reached.";
         } else {
+            // Inserir o quarto no banco de dados
             $stmt = $conn->prepare("INSERT INTO Room (type_Room, capacity_Room, price_Room, description_Room, Floor_id_Floor, status_Room, imgURL) VALUES (?, ?, ?, ?, ?, ?, ?)");
             $stmt->bind_param("sidsiss", $roomType, $roomCapacity, $roomPrice, $roomDescription, $floorId, $statusRoom, $roomImage);
 
@@ -62,6 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $floorNumber = $_POST['num_floor'];
         $numRooms = $_POST['num_rooms'];
 
+        // Inserir o piso no banco de dados
         $stmt = $conn->prepare("INSERT INTO Floor (num_floor, num_rooms) VALUES (?, ?)");
         $stmt->bind_param("ii", $floorNumber, $numRooms);
 
@@ -120,6 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+    // Fecha a conexão com a base de dados
     $conn->close();
 }
 ?>
@@ -163,6 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </style>
     <script>
+        // Função para validar o email do trabalhador
         function validateEmail() {
             const emailField = document.querySelector('input[name="worker_email"]');
             const email = emailField.value;
@@ -178,6 +185,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
+        // Função para validar o formulário
         function validateForm() {
             return validateEmail();
         }
@@ -187,6 +195,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h1>Manage Hotel</h1>
 
     <?php
+    // Exibe mensagem de sucesso ou erro, se houver
     if (isset($_SESSION['message'])) {
         echo "<p>" . $_SESSION['message'] . "</p>";
         unset($_SESSION['message']);
@@ -270,7 +279,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="center">
         <a href="logout.php" class="btn btn-primary">Back to Login</a>
     </div>
-
-    
 </body>
 </html>

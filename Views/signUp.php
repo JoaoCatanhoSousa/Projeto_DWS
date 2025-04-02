@@ -1,11 +1,15 @@
 <?php
+// Inclui o arquivo de conexão com a base de dados
 include(__DIR__ . '/../BasedeDados.php');
+// Inicia a sessão
 session_start();
 
 // Indicar que o usuário está na página de registro
 $_SESSION['registering'] = true;
 
+// Verifica se o formulário foi enviado via POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obtém os dados do formulário
     $fullName = $_POST['name_Person'];
     $email = $_POST['email_Person'];
     $age = $_POST['age_Person'];
@@ -40,28 +44,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         $stmt->close();
 
+        // Se não houver erros, prosseguir com o registro
         if (!isset($error)) {
             // Iniciar transação
             $conn->begin_transaction();
 
             try {
-                // Prepare a SQL statement para a tabela Person
+                // Prepara a instrução SQL para a tabela Person
                 $stmt1 = $conn->prepare("INSERT INTO Person (name_Person, email_Person, age_Person, num_Person) VALUES (?, ?, ?, ?)");
                 $stmt1->bind_param("ssis", $fullName, $email, $age, $num);
 
-                // Execute a instrução para a tabela Person
+                // Executa a instrução para a tabela Person
                 if (!$stmt1->execute()) {
                     throw new Exception($stmt1->error);
                 }
 
-                // Obter o ID da pessoa inserida
+                // Obtém o ID da pessoa inserida
                 $personId = $conn->insert_id;
 
-                // Prepare a SQL statement para a tabela Client
+                // Prepara a instrução SQL para a tabela Client
                 $stmt2 = $conn->prepare("INSERT INTO Client (Person_id_Person, password_client) VALUES (?, ?)");
                 $stmt2->bind_param("is", $personId, $password);
 
-                // Execute a instrução para a tabela Client
+                // Executa a instrução para a tabela Client
                 if (!$stmt2->execute()) {
                     throw new Exception($stmt2->error);
                 }
@@ -83,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "Error: " . $e->getMessage();
             }
 
-            // Close the statements and connection
+            // Fecha as instruções e a conexão
             $stmt1->close();
             $stmt2->close();
             $conn->close();
@@ -189,10 +194,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 </style>
 
+<!-- Inclui o cabeçalho -->
 <?php include(__DIR__ . '/Partials/header.php'); ?>
 <body class="d-flex flex-column">
     <main class="flex-shrink-0">
-        <!-- Page Content-->
+        <!-- Conteúdo da página -->
         <section class="py-5">
             <div class="container px-5">
                 <h1 class="fw-bolder fs-5 mb-4">Welcome, to the <strong>Sign Up Page</strong></h1>
@@ -203,9 +209,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="loginclass">
                                     <h1 class="form-title">Sign Up with</h1>
                                     <p class="separator"><span></span></p>
+                                    <!-- Exibe mensagem de erro, se houver -->
                                     <?php if (isset($error)): ?>
                                         <div class="alert alert-danger"><?php echo $error; ?></div>
                                     <?php endif; ?>
+                                    <!-- Formulário de inscrição -->
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="login-form">
                                         <div class="input-wrapper">
                                             <input type="text" name="name_Person" placeholder="Full Name" class="input-field" required pattern="^[\p{L} ]+$" title="O nome deve conter apenas letras e acentos.">
@@ -247,5 +255,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </section>
     </main>
 </body>
+<!-- Inclui o rodapé -->
 <?php include(__DIR__ . '/Partials/footer.php'); ?>
 </html>

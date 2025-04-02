@@ -1,15 +1,20 @@
 <?php
+// Inclui o arquivo de conexão com a base de dados
 include(__DIR__ . '/../BasedeDados.php');
+// Inicia a sessão
 session_start();
 
 // Verificar se o usuário está logado
 if (!isset($_SESSION['id_Person'])) {
+    // Redireciona para a página de login se o usuário não estiver logado
     header("Location: logIn.php");
     exit();
 }
 
+// Obtém o ID do quarto da URL
 $roomId = $_GET['room_id'];
-$userId = $_SESSION['id_Person']; // Usar o ID do usuário armazenado na sessão
+// Obtém o ID do usuário da sessão
+$userId = $_SESSION['id_Person'];
 $roomPricePerNight = 0;
 
 // Recuperar o preço por noite do quarto selecionado
@@ -20,7 +25,9 @@ $stmt->bind_result($roomPricePerNight);
 $stmt->fetch();
 $stmt->close();
 
+// Verifica se o formulário foi enviado via POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obtém os dados do formulário
     $checkin = $_POST['checkin'];
     $checkout = $_POST['checkout'];
     $price = $_POST['price'];
@@ -36,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->fetch();
     $stmt->close();
 
+    // Verifica se o quarto está disponível
     if ($reservationCount > 0) {
         echo "Error: The room is not available for the selected dates.";
     } else {
@@ -43,6 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $conn->prepare("INSERT INTO Reservation (date_Entrance, date_Out, final_Cost, status, Cient_Person_id_Person) VALUES (?, ?, ?, ?, ?)");
         $stmt->bind_param("ssdsi", $checkin, $checkout, $price, $status, $userId);
 
+        // Verifica se a inserção foi bem-sucedida
         if ($stmt->execute()) {
             $reservationId = $stmt->insert_id;
 
@@ -60,6 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->close();
     }
 
+    // Fecha a conexão com a base de dados
     $conn->close();
 }
 ?>
@@ -102,28 +112,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border-radius: 4px;
         }
     </style>
-    <script>
-        function calculatePrice() {
-            const checkin = new Date(document.getElementById('checkin').value);
-            const checkout = new Date(document.getElementById('checkout').value);
-            const pricePerNight = parseFloat(document.getElementById('price_per_night').value);
+<script>
+    // Função para calcular o preço total da reserva
+    function calculatePrice() {
+        // Obtém a data de check-in do campo de entrada
+        const checkin = new Date(document.getElementById('checkin').value);
 
-            if (checkin && checkout && pricePerNight) {
-                const timeDifference = checkout - checkin;
-                const days = timeDifference / (1000 * 3600 * 24);
-                const totalPrice = days * pricePerNight;
+        // Obtém a data de check-out do campo de entrada
+        const checkout = new Date(document.getElementById('checkout').value);
 
-                if (!isNaN(totalPrice)) {
-                    document.getElementById('price').value = totalPrice.toFixed(2);
-                }
+        // Obtém o preço por noite do campo de entrada
+        const pricePerNight = parseFloat(document.getElementById('price_per_night').value);
+
+        // Verifica se todas as entradas necessárias estão preenchidas (check-in, check-out, preço por noite)
+        if (checkin && checkout && pricePerNight) {
+            // Calcula a diferença de tempo entre check-out e check-in em milissegundos
+            const timeDifference = checkout - checkin;
+
+            // Converte a diferença de tempo de milissegundos para dias
+            const days = timeDifference / (1000 * 3600 * 24);
+
+            // Calcula o preço total multiplicando o número de dias pelo preço por noite
+            const totalPrice = days * pricePerNight;
+
+            // Verifica se o resultado é um número válido antes de exibi-lo
+            if (!isNaN(totalPrice)) {
+                // Define o valor calculado no campo de preço total, formatado com duas casas decimais
+                document.getElementById('price').value = totalPrice.toFixed(2);
             }
         }
-    </script>
+    }
+</script>
+
 </head>
+<!-- Inclui o cabeçalho -->
 <?php include(__DIR__ . '/Partials/header.php'); ?>
 <body>
     <div class="container">
         <h1>Reserva de Hotel</h1>
+        <!-- Formulário de reserva -->
         <form action="pre_hotelReservation.php?room_id=<?php echo $roomId; ?>" method="post">
             <label for="checkin">Date of Entrance:</label>
             <input type="date" id="checkin" name="checkin" required onchange="calculatePrice()">
@@ -146,5 +173,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
     </div>
 </body>
+<!-- Inclui o rodapé -->
 <?php include(__DIR__ . '/Partials/footer.php'); ?>
 </html>
