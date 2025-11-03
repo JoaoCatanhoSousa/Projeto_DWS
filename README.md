@@ -42,9 +42,31 @@ The project focuses on combining **dynamic web technologies** with **database-dr
 
 ---
 
-## 🚀 How to Run the Project
+## ⚙️ How to Set Up the Database Connection
 
-1. **Clone this repository:**
-   ```bash
-   git clone https://github.com/yourusername/CatanhosHotel.git
+To run this project and connect it to the database, follow these steps carefully:
+
+---
+
+### 🧰 1. Configure XAMPP
+- Make sure **XAMPP** is installed and working properly.  
+- Open the **XAMPP Control Panel** and start **Apache** and **MySQL**.
+
+---
+
+### 🗄️ 2. Create the Database
+1. Open your browser and go to:  
+   👉 [http://localhost/phpmyadmin](http://localhost/phpmyadmin)  
+2. Create a new database named **`mydb`** *(or use another name and update it in your PHP code).*  
+3. Import the SQL file (if provided) to set up the tables.
+
+### 🧪 3. Test the Connection
+Create a simple PHP file (for example, `test_connection.php`) to check if your database connection works:
+
+```php
+<?php
+include 'includes/config.php';
+echo "✅ Database connection successful!";
+?>
+
 
