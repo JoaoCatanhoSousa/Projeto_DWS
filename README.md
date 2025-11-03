@@ -71,4 +71,7 @@ include 'includes/config.php';
 echo "✅ Database connection successful!";
 ?>
 
+---
+🌐 5. Run in the Browser
+
 
