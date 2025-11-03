@@ -60,6 +60,8 @@ To run this project and connect it to the database, follow these steps carefully
 2. Create a new database named **`mydb`** *(or use another name and update it in your PHP code).*  
 3. Import the SQL file (if provided) to set up the tables.
 
+---
+
 ### 🧪 3. Test the Connection
 Create a simple PHP file (for example, `test_connection.php`) to check if your database connection works:
 
