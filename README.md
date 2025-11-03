@@ -3,7 +3,7 @@
 This project was developed as part of the **Dynamic Web Solutions** course.  
 It’s a complete hotel management web application that includes both **client** and **administrative** interfaces, offering a modern, responsive, and efficient system for hotel operations.
 
----
+--
 
 ## 💡 About the Project
 
