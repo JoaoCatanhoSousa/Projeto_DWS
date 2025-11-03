@@ -42,19 +42,6 @@ The project focuses on combining **dynamic web technologies** with **database-dr
 
 ---
 
-## 🗂️ Project Structure
-/CatanhosHotel
-│
-├── /admin # Administrative dashboard and features
-├── /client # Client-side pages and functionality
-├── /includes # Reusable PHP files (database connection, headers, etc.)
-├── /assets # CSS, JS, and image files
-├── /api # RESTful API endpoints
-└── index.php # Main entry point
-
-
----
-
 ## 🚀 How to Run the Project
 
 1. **Clone this repository:**
