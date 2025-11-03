@@ -1,48 +1,46 @@
-🏨 Catanho's Hotel
+# 🏨 Catanho's Hotel
 
-This project was developed as part of the Dynamic Web Solutions course.
-It’s a complete hotel management web application that includes both client and administrative interfaces, offering a modern, responsive, and efficient system for hotel operations.
+This project was developed as part of the **Dynamic Web Solutions** course.  
+It’s a complete hotel management web application that includes both **client** and **administrative** interfaces, offering a modern, responsive, and efficient system for hotel operations.
 
-💡 About the Project
+---
 
-Catanho’s Hotel is a web-based management system designed to simplify the process of booking, managing, and organizing hotel operations.
+## 💡 About the Project
+
+**Catanho’s Hotel** is a web-based management system designed to simplify the process of booking, managing, and organizing hotel operations.  
 It was built to provide a real-world simulation of how hotels handle customer interactions, reservations, and internal administration.
 
-The project focuses on combining dynamic web technologies with database-driven design, ensuring a seamless flow between user actions and backend processing.
+The project focuses on combining **dynamic web technologies** with **database-driven design**, ensuring a seamless flow between user actions and backend processing.
 
-⚙️ Main Features
-👤 Client Side
+---
 
-User registration and login system
+## ⚙️ Main Features
 
-Room browsing and filtering
+### 👤 Client Side
+- User registration and login system  
+- Room browsing and filtering  
+- Online booking system  
+- Reservation history and management  
+- AJAX-powered interactions for a smoother experience  
 
-Online booking system
+### 🧑‍💼 Admin Side
+- Secure admin login  
+- Dashboard with real-time statistics  
+- Room and booking management  
+- Customer management  
+- API integration for data access  
+- Dynamic content updates (using AJAX)  
 
-Reservation history and management
+---
 
-AJAX-powered interactions for a smoother experience
+## 🧱 Tech Stack
 
-🧑‍💼 Admin Side
+- **Frontend:** HTML, CSS, JavaScript, AJAX  
+- **Backend:** PHP  
+- **Database:** MySQL  
+- **API:** RESTful PHP-based endpoints  
 
-Secure admin login
+---
 
-Dashboard with real-time statistics
+## 🗂️ Project Structure
 
-Room and booking management
-
-Customer management
-
-API integration for data access
-
-Dynamic content updates (using AJAX)
-
-🧱 Tech Stack
-
-Frontend: HTML, CSS, JavaScript, AJAX
-
-Backend: PHP
-
-Database: MySQL
-
-API: RESTful PHP-based endpoints
