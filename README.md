@@ -76,11 +76,11 @@ echo "✅ Database connection successful!";
 ### 🌐 4. Run in the Browser
 
 1. Place your project folder inside htdocs:
-
+```
 C:\xampp\htdocs\Projeto_DWS\
-
+```
 2. Open your browser and go to:
-
+```
 http://localhost/Projeto_DWS/
-
+```
 3. Navigate to the desired PHP file (e.g., index.php).
