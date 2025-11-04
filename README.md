@@ -70,8 +70,17 @@ Create a simple PHP file (for example, `test_connection.php`) to check if your d
 include 'includes/config.php';
 echo "✅ Database connection successful!";
 ?>
+```
 
 ---
 🌐 5. Run in the Browser
 
+1. Place your project folder inside htdocs:
 
+C:\xampp\htdocs\Projeto_DWS\
+
+2. Open your browser and go to:
+
+http://localhost/Projeto_DWS/
+
+3. Navigate to the desired PHP file (e.g., index.php).
