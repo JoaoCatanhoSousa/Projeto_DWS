@@ -73,7 +73,7 @@ echo "✅ Database connection successful!";
 ```
 
 ---
-🌐 5. Run in the Browser
+### 🌐 4. Run in the Browser
 
 1. Place your project folder inside htdocs:
 
